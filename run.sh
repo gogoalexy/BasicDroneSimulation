@@ -1,10 +1,12 @@
+#!/bin/bash
+
 xhost +
 docker run -it --rm \
+  --network=host \
+  -p 5600:5600/udp \
   --volume=/tmp/.X11-unix:/tmp/.X11-unix \
   --device=/dev/dri:/dev/dri \
   --env="DISPLAY=$DISPLAY" \
-  --name="gazebo-x11-container" \
-  gazebo-x11:1.0 \
-  gazebo
+  px4-head:typhoon
 
 xhost -
