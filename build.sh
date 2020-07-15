@@ -3,6 +3,10 @@
 COMM="latest"
 CAM="typhoon"
 
+cd Firmware
+git checkout v1.11.0-rc1 && git submodule update --init --recursive
+cd ..
+
 if [ -z "$1" ]; then
 	echo "No target specified. (${COMM}/${CAM})"
 elif [ "$1" = "${CAM}" ]; then

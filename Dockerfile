@@ -3,6 +3,7 @@ FROM px4io/px4-dev-simulation-bionic:2020-01-29
 ENV WORKSPACE_DIR /root
 ENV FIRMWARE_DIR ${WORKSPACE_DIR}/Firmware
 ENV SITL_RTSP_PROXY ${WORKSPACE_DIR}/sitl_rtsp_proxy
+WORKDIR /root
 
 RUN \
   apt-get update && \
@@ -16,16 +17,15 @@ RUN \
 
 RUN pip3 install packaging
 
-RUN git clone https://github.com/PX4/Firmware.git ${FIRMWARE_DIR}
-RUN git -C ${FIRMWARE_DIR} checkout v1.11.0-rc1
-RUN git -C ${FIRMWARE_DIR} submodule update --init --recursive
+COPY Firmware Firmware
+COPY .git .git
 
 COPY edit_rcS.bash ${WORKSPACE_DIR}
 COPY entrypoint.sh /root/entrypoint.sh
 RUN chmod +x /root/entrypoint.sh
 RUN ["/bin/bash", "-c", " \
     cd ${FIRMWARE_DIR} && \
-    DONT_RUN=1 make px4_sitl gazebo_solo \
+    DONT_RUN=1 make px4_sitl gazebo_solo__sonoma_raceway \
 "]
 
 COPY sitl_rtsp_proxy ${SITL_RTSP_PROXY}
