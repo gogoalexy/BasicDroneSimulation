@@ -4,7 +4,6 @@
 # - DISPLAY default is :99, set in dockerfile
 # - Users can override with `-e DISPLAY=` in `docker run` command to avoid
 #   running Xvfb and attach their screen
-echo "entrypoint"
 
 if [[ -x "$(command -v Xvfb)" && "$DISPLAY" == ":99" ]]; then
 	echo "Starting Xvfb"
@@ -22,11 +21,9 @@ fi
 #	exec "$@"
 #fi
 
-echo "sitl_rtsp_proxy"
-
 ${SITL_RTSP_PROXY}/build/sitl_rtsp_proxy &
 
 source ${WORKSPACE_DIR}/edit_rcS.bash $1 $2 &&
 cd ${FIRMWARE_DIR} &&
 #make px4_sitl gazebo_typhoon_h480
-make px4_sitl gazebo_solo__sonoma_raceway
+make px4_sitl gazebo_solo_cam__sonoma_raceway

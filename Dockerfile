@@ -25,7 +25,8 @@ COPY entrypoint.sh /root/entrypoint.sh
 RUN chmod +x /root/entrypoint.sh
 RUN ["/bin/bash", "-c", " \
     cd ${FIRMWARE_DIR} && \
-    DONT_RUN=1 make px4_sitl gazebo_solo__sonoma_raceway \
+    DONT_RUN=1 make px4_sitl gazebo_solo_cam__sonoma_raceway && \
+    DONT_RUN=1 make px4_sitl gazebo_solo_cam__sonoma_raceway \
 "]
 
 COPY sitl_rtsp_proxy ${SITL_RTSP_PROXY}
