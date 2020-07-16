@@ -34,7 +34,7 @@ elif [ $new_flag ]; then
 		  --volume=/tmp/.X11-unix:/tmp/.X11-unix \
 		  --device=/dev/dri:/dev/dri \
 		  --env="DISPLAY=$DISPLAY" \
-		  --name=$reuse_flag \
+		  --name=$new_flag \
 		  $image_flag
 	else
 		echo "Please specify image name (-i)."

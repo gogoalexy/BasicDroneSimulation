@@ -19,6 +19,9 @@ RUN pip3 install packaging
 
 COPY Firmware Firmware
 COPY .git .git
+COPY custom_model/sitl_gazebo/models/solo_cam Firmware/Tools/sitl_gazebo/models/solo_cam
+COPY custom_model/ROMFS/px4fmu_common/init.d-posix Firmware/ROMFS/px4fmu_common/init.d-posix/
+RUN sed -i 's/solo/& solo_cam/' Firmware/platforms/posix/cmake/sitl_target.cmake
 
 COPY edit_rcS.bash ${WORKSPACE_DIR}
 COPY entrypoint.sh /root/entrypoint.sh
