@@ -31,6 +31,7 @@ elif [ $new_flag ]; then
 	if [ $image_flag ]; then
 		docker run -it \
 		  --volume=/tmp/.X11-unix:/tmp/.X11-unix \
+		  --volume=/home/alexyao/repos/gitrepo/EasyDroneSimulation/gazebo/models/:/root/.gazebo/models/ \
 		  --device=/dev/dri:/dev/dri \
 		  --env="DISPLAY=$DISPLAY" \
 		  --name=$new_flag \
