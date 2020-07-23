@@ -3,6 +3,7 @@ FROM px4io/px4-dev-simulation-bionic:2020-01-29
 ENV WORKSPACE_DIR /root
 ENV FIRMWARE_DIR ${WORKSPACE_DIR}/Firmware
 ENV SITL_RTSP_PROXY ${WORKSPACE_DIR}/sitl_rtsp_proxy
+
 WORKDIR /root
 
 RUN \
@@ -22,6 +23,7 @@ COPY .git .git
 COPY custom_model/sitl_gazebo/models/solo_cam Firmware/Tools/sitl_gazebo/models/solo_cam
 COPY custom_model/ROMFS/px4fmu_common/init.d-posix Firmware/ROMFS/px4fmu_common/init.d-posix/
 RUN sed -i 's/solo/& solo_cam/' Firmware/platforms/posix/cmake/sitl_target.cmake
+RUN sed -i 's/-295\s150\s0/-270\s120\s-2/' Firmware/Tools/sitl_gazebo/worlds/sonoma_raceway.world
 
 COPY edit_rcS.bash ${WORKSPACE_DIR}
 COPY entrypoint.sh /root/entrypoint.sh
