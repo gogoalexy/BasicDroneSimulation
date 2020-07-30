@@ -1,3 +1,6 @@
 [submodule "Firmware"]
 	path = Firmware
 	url = https://github.com/PX4/Firmware.git
+[submodule "gazebo_models"]
+	path = gazebo_models
+	url = https://github.com/tudelft/gazebo_models
