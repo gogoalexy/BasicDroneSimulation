@@ -26,4 +26,4 @@ ${SITL_RTSP_PROXY}/build/sitl_rtsp_proxy &
 source ${WORKSPACE_DIR}/edit_rcS.bash $1 $2 &&
 cd ${FIRMWARE_DIR} &&
 #make px4_sitl gazebo_typhoon_h480
-make px4_sitl gazebo_solo_cam__sonoma_raceway
+make px4_sitl gazebo_solo_cam__drone_race_track_2018_actual
